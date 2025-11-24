@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Filippinerne – Budget & Forbrug</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --bg-card: #ffffff;
+      --primary: #6c5ce7;
+      --primary-soft: rgba(108, 92, 231, 0.12);
+      --accent: #00b894;
+      --accent-soft: rgba(0, 184, 148, 0.12);
+      --text-main: #1f2933;
+      --text-muted: #6b7b93;
+      --danger: #ff7675;
+      --danger-soft: rgba(255, 118, 117, 0.12);
+      --border-subtle: #dde3f0;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #f9f5ff, #f5f7fb 35%, #e8f6ff);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    .wrapper {
+      max-width: 1100px;
+      width: 100%;
+      margin: 16px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(244,249,255,0.98));
+      border-radius: 24px;
+      box-shadow: var(--shadow-soft);
+      padding: 18px 16px 22px;
+      border: 1px solid rgba(209, 213, 224, 0.9);
+    }
+
+    @media (min-width: 768px) {
+      .wrapper {
+        margin: 32px 16px;
+        padding: 24px 26px 30px;
+      }
+    }
+
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    @media (min-width: 880px) {
+      header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 700;
+      color: #111827;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    @media (min-width: 768px) {
+      h1 {
+        font-size: 26px;
+      }
+    }
+
+    h1 span.flag {
+      font-size: 22px;
+    }
+
+    header p {
+      margin: 2px 0 0;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    @media (min-width: 768px) {
+      header p {
+        font-size: 13px;
+      }
+    }
+
+    .pill-header {
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(108, 92, 231, 0.06);
+      color: var(--primary);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill-header-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    @media (min-width: 880px) {
+      .layout {
+        grid-template-columns: minmax(320px, 1.1fr) minmax(280px, 0.9fr);
+        gap: 18px;
+      }
+    }
+
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      padding: 14px 14px 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .card {
+        padding: 16px 18px 18px;
+      }
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at top left, rgba(108, 92, 231, 0.1), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(0, 184, 148, 0.09), transparent 55%);
+      opacity: 0.55;
+      mix-blend-mode: multiply;
+    }
+
+    .card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    h2 {
+      margin: 6px 0 4px;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    @media (min-width: 768px) {
+      h2 {
+        font-size: 17px;
+      }
+    }
+
+    p {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin: 0 0 8px;
+    }
+
+    @media (min-width: 768px) {
+      p {
+        font-size: 13px;
+      }
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 3px;
+      color: #111827;
+    }
+
+    .field-group {
+      margin-bottom: 8px;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      border-radius: 999px;
+      border: 1px solid #d0d7e6;
+      padding: 7px 11px;
+      font-size: 13px;
+      color: var(--text-main);
+      background: #f9fbff;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, transform 0.05s ease;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    input[type="number"]:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.25);
+      background: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    small {
+      font-size: 11px;
+      color: var(--text-muted);
+      display: block;
+      margin-top: 2px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-size: 11px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .badge span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--primary);
+    }
+
+    .btn-row {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    button {
+      border-radius: 999px;
+      border: none;
+      padding: 8px 15px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.08s ease, box-shadow 0.12s ease, background 0.12s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #6c5ce7, #a855f7);
+      color: #ffffff;
+      box-shadow: 0 10px 25px rgba(108, 92, 231, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 32px rgba(108, 92, 231, 0.4);
+    }
+
+    .btn-secondary {
+      background: #eef2ff;
+      color: #4338ca;
+      border: 1px solid #c7d2fe;
+    }
+
+    .btn-secondary:hover {
+      background: #e0e7ff;
+      transform: translateY(-1px);
+    }
+
+    hr {
+      border: none;
+      border-top: 1px dashed #dde3f0;
+      margin: 12px 0 10px;
+    }
+
+    .result-main {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: #111827;
+    }
+
+    @media (min-width: 768px) {
+      .result-main {
+        font-size: 20px;
+      }
+    }
+
+    .result-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    @media (min-width: 768px) {
+      .result-sub {
+        font-size: 13px;
+      }
+    }
+
+    .tag-ok, .tag-warning {
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-top: 4px;
+    }
+
+    .tag-ok {
+      color: #0f9f6e;
+      background: var(--accent-soft);
+    }
+
+    .tag-warning {
+      color: #b53d3d;
+      background: var(--danger-soft);
+    }
+
+    /* Daily tracker */
+    .daily-wrapper {
+      margin-top: 16px;
+    }
+
+    .table-wrap {
+      margin-top: 10px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      overflow: auto;
+      max-height: 260px;
+      background: #f9fbff;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+      min-width: 540px;
+    }
+
+    thead {
+      position: sticky;
+      top: 0;
+      background: #eef2ff;
+      z-index: 1;
+    }
+
+    th, td {
+      padding: 6px 6px;
+      border-bottom: 1px solid #e5e9f2;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    th:first-child, td:first-child {
+      text-align: left;
+      position: sticky;
+      left: 0;
+      background: inherit;
+      z-index: 2;
+    }
+
+    th {
+      font-weight: 600;
+      color: #4b5563;
+      font-size: 11px;
+    }
+
+    tr:nth-child(even) td {
+      background: #fdfdff;
+    }
+
+    tr:nth-child(odd) td {
+      background: #f9fbff;
+    }
+
+    .day-sum {
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .rate-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 8px;
+    }
+
+    .rate-row > div {
+      flex: 1 1 160px;
+    }
+
+    .mini-input {
+      max-width: 180px;
+    }
+
+    .note-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px dashed #c4d0ea;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .note-chip span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <div>
+        <div class="pill-header">
+          <span class="pill-header-dot"></span>
+          Budget & forbrug – Filippinerne
+        </div>
+        <h1><span class="flag">🇵🇭</span> Filippinerne – Budget overblik</h1>
+        <p>
+          Perioden er sat til <strong>29. november – 30. januar (63 dage)</strong>.
+          Første del er budget i kroner. Nederst kan du føre regnskab dag for dag i pesos.
+        </p>
+      </div>
+    </header>
+
+    <div class="layout">
+      <!-- INPUTS -->
+      <div class="card">
+        <div class="card-inner">
+          <div class="badge">
+            <span class="dot"></span>
+            Indtast dine tal
+          </div>
+
+          <h2>Indtægter & startpenge</h2>
+
+          <div class="field-group">
+            <label for="startCash">Startopsparing inden du rejser (kr)</label>
+            <input type="number" id="startCash" value="20000" />
+          </div>
+
+          <div class="field-group">
+            <label for="decSalary">Løn 23. december (efter skat, kr)</label>
+            <input type="number" id="decSalary" value="19000" />
+          </div>
+
+          <div class="field-group">
+            <label for="janSalary">Løn 25. januar (efter skat, kr)</label>
+            <input type="number" id="janSalary" value="19000" />
+          </div>
+
+          <div class="field-group">
+            <label for="decHoliday">Feriepenge i december (kr)</label>
+            <input type="number" id="decHoliday" value="2000" />
+          </div>
+
+          <div class="field-group">
+            <label for="janHoliday">Feriepenge i januar (kr)</label>
+            <input type="number" id="janHoliday" value="2000" />
+          </div>
+
+          <hr />
+
+          <h2>Faste udgifter (skal betales)</h2>
+
+          <div class="field-group">
+            <label for="travelOut">Rejseudgifter ud (fly + hotel + Manila→Davao) (kr)</label>
+            <input type="number" id="travelOut" value="4000" />
+          </div>
+
+          <div class="field-group">
+            <label for="travelHome">Returbillet 30. januar (kr)</label>
+            <input type="number" id="travelHome" value="5000" />
+          </div>
+
+          <div class="field-group">
+            <label for="decRent">Husleje december (kr)</label>
+            <input type="number" id="decRent" value="5000" />
+          </div>
+
+          <div class="field-group">
+            <label for="janRent">Husleje januar (kr)</label>
+            <input type="number" id="janRent" value="5000" />
+          </div>
+
+          <div class="field-group">
+            <label for="febRent">Husleje februar (kr)</label>
+            <input type="number" id="febRent" value="5000" />
+            <small>Du betaler typisk husleje 1. februar for hele februar, selvom du kommer hjem 1. februar.</small>
+          </div>
+
+          <div class="field-group">
+            <label for="xmasGifts">Julegaver til familie (kr)</label>
+            <input type="number" id="xmasGifts" value="3000" />
+          </div>
+
+          <div class="field-group">
+            <label for="friendCost">Ekstra forbrug mens ven er der (15.–30. jan) (kr)</label>
+            <input type="number" id="friendCost" value="8000" />
+          </div>
+
+          <div class="field-group">
+            <label for="targetSavings">Opsparing du vil have tilbage efter rejsen (kr)</label>
+            <input type="number" id="targetSavings" value="2000" />
+            <small>Hvis du vil, at kontoen ikke er helt tom, når du kommer hjem.</small>
+          </div>
+
+          <hr />
+
+          <h2>Dit forventede dagsforbrug</h2>
+          <div class="field-group">
+            <label for="expectedDaily">Forventet gennemsnitligt dagsforbrug (kr/dag)</label>
+            <input type="number" id="expectedDaily" value="350" />
+            <small>Mad, transport, hygge osv. Siden tjekker, om det passer med budgettet.</small>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn-primary" onclick="calculate()">
+              💡 Beregn budget
+            </button>
+            <button class="btn-secondary" onclick="resetDefaults()">
+              Nulstil til standard
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESULTS -->
+      <div class="card">
+        <div class="card-inner">
+          <div class="badge" style="background: var(--accent-soft); color: #047857;">
+            <span class="dot" style="background: #10b981;"></span>
+            Resultat
+          </div>
+
+          <h2>Oversigt for hele perioden</h2>
+          <div class="result-sub" id="totalInfo">
+            Tryk <strong>“Beregn budget”</strong> for at se dit overblik.
+          </div>
+
+          <hr />
+
+          <h2>Maksimalt forbrug (for at nå din opsparing)</h2>
+          <div class="result-main" id="totalHygge">–</div>
+          <div class="result-sub" id="dailyMax">–</div>
+          <div class="result-sub" id="monthSplit">–</div>
+
+          <hr />
+
+          <h2>Tjek af dit forventede dagsforbrug</h2>
+          <div class="result-sub" id="expectedCheck">–</div>
+          <div id="expectedTag"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAGLIG PESO-TRACKER -->
+    <div class="daily-wrapper">
+      <div class="card">
+        <div class="card-inner">
+          <div class="badge" style="background: rgba(56,189,248,0.16); color:#0369a1;">
+            <span class="dot" style="background:#0ea5e9;"></span>
+            Dagligt forbrug i pesos
+          </div>
+          <h2>Regnskab fra 29. november til 30. januar</h2>
+          <p>
+            Skriv hvad du bruger i <strong>pesos</strong> på mad, shopping, taxa/transport og diverse 
+            for de dage, du vil tracke. Så ser du samlet forbrug og gennemsnit pr. dag – også i kroner.
+          </p>
+
+          <div class="rate-row">
+            <div class="field-group mini-input">
+              <label for="rateDKK">Valutakurs – hvor mange pesos er 1 DKK?</label>
+              <input type="number" id="rateDKK" value="8" step="0.01" />
+              <small>Fx hvis 1 DKK ≈ 8 pesos, så skriv 8.</small>
+            </div>
+            <div>
+              <button class="btn-primary" onclick="calculateDailySpending()">
+                📊 Beregn ud fra dagligt forbrug
+              </button>
+              <div class="note-chip">
+                <span class="dot"></span>
+                Du behøver ikke udfylde alle dage – kun dem, du vil tracke.
+              </div>
+            </div>
+          </div>
+
+          <p class="result-sub" id="dailySummary">
+            Udfyld nogle dage og tryk <strong>“Beregn ud fra dagligt forbrug”</strong>.
+          </p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Dato</th>
+                  <th>Mad (₱)</th>
+                  <th>Shopping (₱)</th>
+                  <th>Taxa / transport (₱)</th>
+                  <th>Diverse (₱)</th>
+                  <th>Sum dag (₱)</th>
+                </tr>
+              </thead>
+              <tbody id="spendBody">
+                <!-- Rækker genereres i JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const DAYS_TOTAL = 63;   // 29. nov – 30. jan
+    const DAYS_DEC = 33;     // 29/11–31/12
+    const DAYS_JAN = 30;     // 1/1–30/1
+    const DAILY_START = new Date(2024, 10, 29); // 29. november (0-index month)
+    const STORAGE_KEY = "phBudget_v1";
+
+    const TOP_IDS = [
+      "startCash","decSalary","janSalary","decHoliday","janHoliday",
+      "travelOut","travelHome",
+      "decRent","janRent","febRent",
+      "xmasGifts","friendCost","targetSavings",
+      "expectedDaily","rateDKK"
+    ];
+
+    function kr(amount) {
+      if (isNaN(amount)) return "–";
+      return amount.toLocaleString("da-DK", {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }) + " kr";
+    }
+
+    // ---------- LOCALSTORAGE ----------
+    function saveState() {
+      try {
+        const state = { top: {}, daily: [] };
+
+        TOP_IDS.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) state.top[id] = el.value;
+        });
+
+        const tbody = document.getElementById("spendBody");
+        const rows = tbody ? tbody.querySelectorAll("tr") : [];
+        rows.forEach(row => {
+          const inputs = row.querySelectorAll("input[type='number']");
+          const dayObj = {};
+          inputs.forEach(input => {
+            const cat = input.getAttribute("data-cat") || "";
+            dayObj[cat] = input.value;
+          });
+          state.daily.push(dayObj);
+        });
+
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {
+        // Hvis localStorage ikke er tilgængelig, ignorerer vi bare
+      }
+    }
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return;
+        const state = JSON.parse(raw);
+
+        if (state.top) {
+          TOP_IDS.forEach(id => {
+            const el = document.getElementById(id);
+            if (el && state.top[id] !== undefined) {
+              el.value = state.top[id];
+            }
+          });
+        }
+
+        if (state.daily && Array.isArray(state.daily)) {
+          const tbody = document.getElementById("spendBody");
+          const rows = tbody.querySelectorAll("tr");
+          rows.forEach((row, i) => {
+            const dayData = state.daily[i] || {};
+            const inputs = row.querySelectorAll("input[type='number']");
+            inputs.forEach(input => {
+              const cat = input.getAttribute("data-cat") || "";
+              if (dayData[cat] !== undefined) {
+                input.value = dayData[cat];
+              }
+            });
+          });
+        }
+      } catch (e) {
+        // Ignorer fejl i load
+      }
+    }
+
+    function attachInputListeners() {
+      TOP_IDS.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener("input", () => {
+            saveState();
+          });
+        }
+      });
+
+      const tbody = document.getElementById("spendBody");
+      const inputs = tbody.querySelectorAll("input[type='number']");
+      inputs.forEach(input => {
+        input.addEventListener("input", () => {
+          saveState();
+        });
+      });
+    }
+
+    // --------- Budget i DKK ---------
+    function calculate() {
+      const startCash   = Number(document.getElementById("startCash").value)   || 0;
+      const decSalary   = Number(document.getElementById("decSalary").value)   || 0;
+      const janSalary   = Number(document.getElementById("janSalary").value)   || 0;
+      const decHoliday  = Number(document.getElementById("decHoliday").value)  || 0;
+      const janHoliday  = Number(document.getElementById("janHoliday").value)  || 0;
+
+      const travelOut   = Number(document.getElementById("travelOut").value)   || 0;
+      const travelHome  = Number(document.getElementById("travelHome").value)  || 0;
+      const decRent     = Number(document.getElementById("decRent").value)     || 0;
+      const janRent     = Number(document.getElementById("janRent").value)     || 0;
+      const febRent     = Number(document.getElementById("febRent").value)     || 0;
+      const xmasGifts   = Number(document.getElementById("xmasGifts").value)   || 0;
+      const friendCost  = Number(document.getElementById("friendCost").value)  || 0;
+      const targetSave  = Number(document.getElementById("targetSavings").value) || 0;
+
+      const expectedDaily = Number(document.getElementById("expectedDaily").value) || 0;
+
+      const totalIn =
+        startCash +
+        decSalary + janSalary +
+        decHoliday + janHoliday;
+
+      const totalFixed =
+        travelOut + travelHome +
+        decRent + janRent + febRent +
+        xmasGifts + friendCost +
+        targetSave;
+
+      const hyggePool = totalIn - totalFixed;
+
+      const totalInfo =
+        `Du har i alt ${kr(totalIn)} at gøre godt med i perioden (startpenge + løn + feriepenge). ` +
+        `Dine faste udgifter, husleje for 3 måneder, gaver, venneforbrug, returbillet og ønsket opsparing ` +
+        `er tilsammen ${kr(totalFixed)}.`;
+      document.getElementById("totalInfo").textContent = totalInfo;
+
+      const totalHyggeEl = document.getElementById("totalHygge");
+      const dailyMaxEl = document.getElementById("dailyMax");
+      const monthSplitEl = document.getElementById("monthSplit");
+      const expectedCheckEl = document.getElementById("expectedCheck");
+      const expectedTagEl = document.getElementById("expectedTag");
+
+      if (hyggePool <= 0) {
+        totalHyggeEl.textContent = kr(hyggePool);
+        dailyMaxEl.textContent =
+          "Der er ikke penge tilbage til dagligt forbrug med de nuværende tal og opsparingsmål.";
+        monthSplitEl.textContent =
+          "Hvis du vil have hyggebudget, skal du enten sænke nogle udgifter eller opsparingen – eller have flere penge ind.";
+        expectedCheckEl.textContent = "";
+        expectedTagEl.textContent = "";
+        expectedTagEl.className = "";
+        saveState();
+        return;
+      }
+
+      const dailyMax = hyggePool / DAYS_TOTAL;
+      const decBudget = hyggePool * (DAYS_DEC / DAYS_TOTAL);
+      const janBudget = hyggePool * (DAYS_JAN / DAYS_TOTAL);
+
+      totalHyggeEl.textContent =
+        `${kr(hyggePool)} kan bruges på mad, ture og hygge i hele perioden.`;
+      dailyMaxEl.textContent =
+        `Det svarer til ca. ${kr(dailyMax)} pr. dag i gennemsnit.`;
+      monthSplitEl.textContent =
+        `Fordelt ca.: ${kr(decBudget)} til perioden 29/11–31/12 (33 dage) ` +
+        `og ${kr(janBudget)} til januar (30 dage).`;
+
+      if (expectedDaily > 0) {
+        const expectedTotal = expectedDaily * DAYS_TOTAL;
+        const diff = hyggePool - expectedTotal;
+
+        expectedCheckEl.textContent =
+          `Hvis du bruger ca. ${kr(expectedDaily)} pr. dag, vil du i alt bruge ${kr(expectedTotal)} ` +
+          `i perioden på dagligt forbrug.`;
+
+        if (Math.round(diff) >= 0) {
+          expectedTagEl.textContent =
+            `Det er indenfor budget – du vil stadig nå dit opsparingsmål og have ca. ${kr(diff)} ekstra luft.`;
+          expectedTagEl.className = "tag-ok";
+        } else {
+          expectedTagEl.textContent =
+            `Det er over budget – du mangler ca. ${kr(-diff)} for at kunne bruge så meget pr. dag ` +
+            `og stadig nå dit opsparingsmål.`;
+          expectedTagEl.className = "tag-warning";
+        }
+      } else {
+        expectedCheckEl.textContent =
+          "Indtast et forventet dagsforbrug for at tjekke, om det passer med dit budget.";
+        expectedTagEl.textContent = "";
+        expectedTagEl.className = "";
+      }
+
+      saveState();
+    }
+
+    function resetDefaults() {
+      document.getElementById("startCash").value   = 20000;
+      document.getElementById("decSalary").value   = 19000;
+      document.getElementById("janSalary").value   = 19000;
+      document.getElementById("decHoliday").value  = 2000;
+      document.getElementById("janHoliday").value  = 2000;
+
+      document.getElementById("travelOut").value   = 4000;
+      document.getElementById("travelHome").value  = 5000;
+      document.getElementById("decRent").value     = 5000;
+      document.getElementById("janRent").value     = 5000;
+      document.getElementById("febRent").value     = 5000;
+      document.getElementById("xmasGifts").value   = 3000;
+      document.getElementById("friendCost").value  = 8000;
+      document.getElementById("targetSavings").value = 2000;
+
+      document.getElementById("expectedDaily").value = 350;
+
+      document.getElementById("totalInfo").textContent =
+        "Tryk “Beregn budget” for at se dit overblik.";
+      document.getElementById("totalHygge").textContent = "–";
+      document.getElementById("dailyMax").textContent = "–";
+      document.getElementById("monthSplit").textContent = "–";
+      document.getElementById("expectedCheck").textContent = "–";
+      const tag = document.getElementById("expectedTag");
+      tag.textContent = "";
+      tag.className = "";
+
+      document.getElementById("rateDKK").value = 8;
+      document.getElementById("dailySummary").textContent =
+        "Udfyld nogle dage og tryk “Beregn ud fra dagligt forbrug”.";
+
+      clearDailyTable();
+      saveState();
+    }
+
+    // --------- Daglig pesos-tracker ---------
+    function buildDailyTable() {
+      const tbody = document.getElementById("spendBody");
+      tbody.innerHTML = "";
+
+      for (let i = 0; i < DAYS_TOTAL; i++) {
+        const date = new Date(DAILY_START);
+        date.setDate(date.getDate() + i);
+
+        const label = date.toLocaleDateString("da-DK", {
+          day: "2-digit",
+          month: "2-digit",
+        });
+
+        const tr = document.createElement("tr");
+
+        const tdDate = document.createElement("td");
+        tdDate.textContent = label;
+        tr.appendChild(tdDate);
+
+        const cats = ["food", "shopping", "taxi", "other"];
+        cats.forEach(cat => {
+          const td = document.createElement("td");
+          const input = document.createElement("input");
+          input.type = "number";
+          input.min = "0";
+          input.step = "1";
+          input.style.width = "70px";
+          input.setAttribute("data-day", i.toString());
+          input.setAttribute("data-cat", cat);
+          td.appendChild(input);
+          tr.appendChild(td);
+        });
+
+        const tdSum = document.createElement("td");
+        tdSum.className = "day-sum";
+        tdSum.textContent = "–";
+        tr.appendChild(tdSum);
+
+        tbody.appendChild(tr);
+      }
+    }
+
+    function clearDailyTable() {
+      const tbody = document.getElementById("spendBody");
+      const rows = tbody.querySelectorAll("tr");
+      rows.forEach(row => {
+        const sumCell = row.querySelector(".day-sum");
+        if (sumCell) sumCell.textContent = "–";
+        const inputs = row.querySelectorAll("input[type='number']");
+        inputs.forEach(input => (input.value = ""));
+      });
+    }
+
+    function calculateDailySpending() {
+      const tbody = document.getElementById("spendBody");
+      const rows = tbody.querySelectorAll("tr");
+      let totalPesos = 0;
+
+      rows.forEach(row => {
+        const inputs = row.querySelectorAll("input[type='number']");
+        let daySum = 0;
+        inputs.forEach(input => {
+          const v = Number(input.value) || 0;
+          daySum += v;
+        });
+        totalPesos += daySum;
+
+        const sumCell = row.querySelector(".day-sum");
+        if (sumCell) {
+          sumCell.textContent =
+            daySum > 0
+              ? daySum.toLocaleString("da-DK") + " ₱"
+              : "–";
+        }
+      });
+
+      const rate = Number(document.getElementById("rateDKK").value) || 0;
+
+      let summary = "";
+      if (totalPesos <= 0) {
+        summary =
+          "Udfyld nogle beløb i tabellen og tryk på knappen for at se dit samlede forbrug.";
+      } else {
+        summary =
+          "Samlet registreret forbrug: " +
+          totalPesos.toLocaleString("da-DK") +
+          " ₱";
+
+        if (rate > 0) {
+          const totalDKK = totalPesos / rate;
+          const avgPesos = totalPesos / DAYS_TOTAL;
+          const avgDKK = avgPesos / rate;
+
+          summary +=
+            " (ca. " +
+            kr(totalDKK) +
+            "). Gennemsnit pr. dag: " +
+            avgPesos.toLocaleString("da-DK", {
+              maximumFractionDigits: 0,
+            }) +
+            " ₱ (ca. " +
+            avgDKK.toLocaleString("da-DK", {
+              maximumFractionDigits: 0,
+            }) +
+            " kr/dag).";
+        } else {
+          summary +=
+            ". Indtast en valutakurs for at se beløbet i kroner.";
+        }
+      }
+
+      document.getElementById("dailySummary").textContent = summary;
+      saveState();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      buildDailyTable();
+      loadState();
+      attachInputListeners();
+      // Kør beregninger én gang, så der vises noget, hvis der allerede er gemte data
+      calculate();
+      calculateDailySpending();
+    });
+  </script>
+</body>
+</html>
