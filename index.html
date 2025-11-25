@@ -8,25 +8,26 @@
   <!-- App icon / PWA hooks -->
   <link rel="apple-touch-icon" href="icon-192.jpg" />
   <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' ry='16' fill='%236c5ce7'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' font-size='32' fill='white'%3E%E2%82%B1%3C/text%3E%3C/svg%3E" />
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%236c5ce7'/%3E%3Cstop offset='1' stop-color='%23a855f7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='18' ry='18' fill='url(%23g)'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' font-size='30' fill='white'%3E%E2%82%B1%3C/text%3E%3C/svg%3E" />
   <meta name="theme-color" content="#6c5ce7" />
 
   <style>
     :root {
-      --bg: #f5f7fb;
-      --bg-card: #ffffff;
-      --primary: #6c5ce7;
-      --primary-soft: rgba(108, 92, 231, 0.12);
-      --accent: #00b894;
-      --accent-soft: rgba(0, 184, 148, 0.12);
-      --text-main: #1f2933;
-      --text-muted: #6b7b93;
-      --danger: #ff7675;
-      --danger-soft: rgba(255, 118, 117, 0.12);
-      --border-subtle: #dde3f0;
-      --radius-lg: 18px;
+      --bg: #060816;
+      --bg-card: rgba(12, 15, 34, 0.96);
+      --bg-card-soft: rgba(24, 27, 55, 0.96);
+      --primary: #8b5cf6;
+      --primary-soft: rgba(139, 92, 246, 0.18);
+      --accent: #22c55e;
+      --accent-soft: rgba(34, 197, 94, 0.14);
+      --text-main: #e5e7eb;
+      --text-muted: #a5b4cf;
+      --danger: #fb7185;
+      --danger-soft: rgba(248, 113, 113, 0.16);
+      --border-subtle: rgba(148, 163, 184, 0.4);
+      --radius-lg: 20px;
       --radius-md: 12px;
-      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.12);
+      --shadow-soft: 0 26px 80px rgba(15, 23, 42, 0.9);
     }
 
     * { box-sizing: border-box; }
@@ -35,17 +36,19 @@
       margin: 0;
       padding: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top left, #f9f5ff, #f5f7fb 35%, #e8f6ff);
       color: var(--text-main);
       display: flex;
       justify-content: center;
       align-items: flex-start;
       min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(96, 165, 250, 0.14), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(244, 114, 182, 0.18), transparent 55%),
+        repeating-linear-gradient(135deg, #020617 0px, #020617 2px, #030712 2px, #030712 4px);
     }
 
-    /* Simple entrance animation */
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
     .animate-enter {
@@ -60,16 +63,20 @@
       max-width: 1100px;
       width: 100%;
       margin: 16px;
-      background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(244,249,255,0.98));
-      border-radius: 24px;
+      background:
+        radial-gradient(circle at top left, rgba(148, 163, 253, 0.1), transparent 50%),
+        radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.06), transparent 55%),
+        rgba(15, 23, 42, 0.88);
+      border-radius: 26px;
       box-shadow: var(--shadow-soft);
-      padding: 18px 16px 22px;
-      border: 1px solid rgba(209, 213, 224, 0.9);
+      padding: 18px 14px 22px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      backdrop-filter: blur(18px);
     }
     @media (min-width: 768px) {
       .wrapper {
         margin: 32px 16px;
-        padding: 24px 26px 30px;
+        padding: 24px 24px 30px;
       }
     }
 
@@ -91,14 +98,14 @@
       margin: 0;
       font-size: 22px;
       font-weight: 700;
-      color: #111827;
+      color: #f9fafb;
       display: flex;
       align-items: center;
       gap: 8px;
+      letter-spacing: 0.01em;
     }
     @media (min-width: 768px) { h1 { font-size: 26px; } }
-
-    h1 span.flag { font-size: 22px; }
+    h1 span.flag { font-size: 24px; }
 
     header p {
       margin: 2px 0 0;
@@ -110,11 +117,11 @@
     .pill-header {
       padding: 5px 10px;
       border-radius: 999px;
-      background: rgba(108, 92, 231, 0.06);
-      color: var(--primary);
+      background: rgba(148, 163, 253, 0.18);
+      color: #c7d2fe;
       font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       display: inline-flex;
       align-items: center;
@@ -124,47 +131,55 @@
       width: 7px;
       height: 7px;
       border-radius: 999px;
-      background: var(--accent);
+      background: #22c55e;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.24);
+    }
+
+    .sub-note {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 4px;
     }
 
     .profile-switch {
       display: inline-flex;
       margin-top: 10px;
       border-radius: 999px;
-      padding: 3px;
-      background: #e5ecff;
-      border: 1px solid #c7d2fe;
+      padding: 4px;
+      background: radial-gradient(circle at top left, rgba(148, 163, 253, 0.2), rgba(30, 64, 175, 0.8));
+      border: 1px solid rgba(129, 140, 248, 0.8);
       gap: 4px;
+      box-shadow: 0 14px 35px rgba(30, 64, 175, 0.8);
     }
     .profile-btn {
       border-radius: 999px;
       border: none;
-      padding: 6px 12px;
+      padding: 7px 13px;
       font-size: 12px;
       font-weight: 600;
       cursor: pointer;
       background: transparent;
-      color: #4b5563;
+      color: #e5e7eb;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: background 0.15s ease, color 0.15s ease, transform 0.08s ease;
+      transition: background 0.15s ease, color 0.15s ease, transform 0.08s ease, box-shadow 0.12s ease;
     }
     .profile-btn span.badge {
       padding: 2px 6px;
       border-radius: 999px;
       font-size: 10px;
-      background: rgba(15,118,110,0.08);
-      color: #0f766e;
+      background: rgba(15,118,110,0.26);
+      color: #a7f3d0;
     }
     .profile-btn-active {
-      background: #4f46e5;
-      color: #ffffff;
+      background: radial-gradient(circle at top left, #4f46e5, #7c3aed);
+      color: #f9fafb;
       transform: translateY(-1px);
-      box-shadow: 0 8px 20px rgba(79,70,229,0.35);
+      box-shadow: 0 10px 25px rgba(88, 80, 236, 0.9);
     }
     .profile-btn-active span.badge {
-      background: rgba(255,255,255,0.18);
+      background: rgba(15,23,42,0.5);
       color: #e0f2fe;
     }
 
@@ -182,27 +197,25 @@
     }
 
     .card {
-      background: var(--bg-card);
+      background: radial-gradient(circle at top left, rgba(148, 163, 253, 0.06), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.08), transparent 55%),
+                  var(--bg-card);
       border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid rgba(148, 163, 184, 0.55);
       padding: 14px 14px 16px;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.9);
+      transform: translateY(0);
+      transition: transform 0.12s ease, box-shadow 0.16s ease, border-color 0.16s ease;
     }
-    @media (min-width: 768px) {
-      .card { padding: 16px 18px 18px; }
+    @media (min-width: 768px) { .card { padding: 16px 18px 18px; } }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 28px 70px rgba(15, 23, 42, 0.95);
+      border-color: rgba(191, 219, 254, 0.75);
     }
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        radial-gradient(circle at top left, rgba(108, 92, 231, 0.1), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(0, 184, 148, 0.09), transparent 55%);
-      opacity: 0.55;
-      mix-blend-mode: multiply;
-    }
+
     .card-inner { position: relative; z-index: 1; }
 
     h2 {
@@ -224,7 +237,7 @@
       font-size: 12px;
       font-weight: 500;
       margin-bottom: 3px;
-      color: #111827;
+      color: #e5e7eb;
     }
 
     .field-group { margin-bottom: 8px; }
@@ -232,26 +245,26 @@
     input[type="number"] {
       width: 100%;
       border-radius: 999px;
-      border: 1px solid #d0d7e6;
+      border: 1px solid rgba(148, 163, 184, 0.75);
       padding: 7px 11px;
       font-size: 13px;
-      color: var(--text-main);
-      background: #f9fbff;
+      color: #e5e7eb;
+      background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(15,23,42,0.8));
       transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, transform 0.05s ease;
       -webkit-appearance: none;
       appearance: none;
     }
     input[type="number"]:focus {
       outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.25);
-      background: #ffffff;
+      border-color: #a855f7;
+      box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.4);
+      background: radial-gradient(circle at top left, rgba(55, 65, 194, 0.55), rgba(15,23,42,0.9));
       transform: translateY(-1px);
     }
 
     small {
       font-size: 11px;
-      color: var(--text-muted);
+      color: #9ca3af;
       display: block;
       margin-top: 2px;
     }
@@ -262,17 +275,19 @@
       gap: 6px;
       padding: 4px 9px;
       border-radius: 999px;
-      background: var(--primary-soft);
-      color: var(--primary);
+      background: rgba(30, 64, 175, 0.5);
+      color: #c7d2fe;
       font-size: 11px;
       font-weight: 500;
       margin-bottom: 4px;
+      border: 1px solid rgba(191, 219, 254, 0.45);
     }
     .badge-pill span.dot {
       width: 7px;
       height: 7px;
       border-radius: 999px;
-      background: var(--primary);
+      background: #22c55e;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.4);
     }
 
     .btn-row {
@@ -292,42 +307,45 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: transform 0.08s ease, box-shadow 0.12s ease, background 0.12s ease;
+      transition: transform 0.08s ease, box-shadow 0.12s ease, background 0.12s ease, border-color 0.12s ease;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #6c5ce7, #a855f7);
-      color: #ffffff;
-      box-shadow: 0 10px 25px rgba(108, 92, 231, 0.35);
+      background: radial-gradient(circle at top left, #4f46e5, #a855f7);
+      color: #f9fafb;
+      box-shadow: 0 12px 32px rgba(88, 80, 236, 0.9);
+      border: 1px solid rgba(191, 219, 254, 0.45);
     }
     .btn-primary:hover {
       transform: translateY(-1px);
-      box-shadow: 0 14px 32px rgba(108, 92, 231, 0.4);
+      box-shadow: 0 16px 40px rgba(88, 80, 236, 1);
     }
 
     .btn-secondary {
-      background: #eef2ff;
-      color: #4338ca;
-      border: 1px solid #c7d2fe;
+      background: radial-gradient(circle at top left, rgba(15,23,42,1), rgba(30, 64, 175, 0.9));
+      color: #e5e7eb;
+      border: 1px solid rgba(148, 163, 184, 0.9);
     }
     .btn-secondary:hover {
-      background: #e0e7ff;
+      background: radial-gradient(circle at top left, rgba(30,64,175,1), rgba(15,23,42,0.95));
       transform: translateY(-1px);
+      box-shadow: 0 12px 30px rgba(15,23,42,0.9);
     }
 
     .btn-ghost {
       background: transparent;
-      border: 1px dashed #d1d5db;
-      color: #4b5563;
+      border: 1px dashed rgba(148, 163, 184, 0.75);
+      color: #e5e7eb;
     }
     .btn-ghost:hover {
-      background: #f3f4ff;
+      background: radial-gradient(circle at top left, rgba(30,64,175,0.45), rgba(15,23,42,0.9));
       transform: translateY(-1px);
+      box-shadow: 0 10px 26px rgba(15,23,42,0.9);
     }
 
     hr {
       border: none;
-      border-top: 1px dashed #dde3f0;
+      border-top: 1px dashed rgba(148, 163, 184, 0.55);
       margin: 12px 0 10px;
     }
 
@@ -335,7 +353,7 @@
       font-size: 18px;
       font-weight: 700;
       margin-bottom: 4px;
-      color: #111827;
+      color: #e5e7eb;
     }
     @media (min-width: 768px) { .result-main { font-size: 20px; } }
 
@@ -354,24 +372,27 @@
       margin-top: 4px;
     }
     .tag-ok {
-      color: #0f9f6e;
+      color: #bbf7d0;
       background: var(--accent-soft);
+      border: 1px solid rgba(34,197,94,0.6);
     }
     .tag-warning {
-      color: #b53d3d;
+      color: #fecaca;
       background: var(--danger-soft);
+      border: 1px solid rgba(248, 113, 113, 0.7);
     }
 
-    .daily-wrapper { margin-top: 16px; }
+    .daily-wrapper { margin-top: 18px; }
 
     .table-wrap {
       margin-top: 10px;
       border-radius: var(--radius-md);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid rgba(148, 163, 184, 0.55);
       overflow: auto;
       max-height: 260px;
-      background: #f9fbff;
+      background: radial-gradient(circle at top left, rgba(30, 64, 175, 0.45), rgba(15,23,42,1));
       -webkit-overflow-scrolling: touch;
+      box-shadow: inset 0 0 0 1px rgba(15,23,42,0.8);
     }
 
     table {
@@ -379,18 +400,19 @@
       border-collapse: collapse;
       font-size: 11px;
       min-width: 540px;
+      color: #e5e7eb;
     }
 
     thead {
       position: sticky;
       top: 0;
-      background: #eef2ff;
+      background: linear-gradient(90deg, rgba(30,64,175,0.95), rgba(56,189,248,0.9));
       z-index: 1;
     }
 
     th, td {
       padding: 6px 6px;
-      border-bottom: 1px solid #e5e9f2;
+      border-bottom: 1px solid rgba(15,23,42,0.9);
       text-align: right;
       white-space: nowrap;
     }
@@ -399,22 +421,22 @@
       text-align: left;
       position: sticky;
       left: 0;
-      background: inherit;
+      background: rgba(15,23,42,0.95);
       z-index: 2;
     }
 
     th {
       font-weight: 600;
-      color: #4b5563;
+      color: #e5e7eb;
       font-size: 11px;
     }
 
-    tr:nth-child(even) td { background: #fdfdff; }
-    tr:nth-child(odd) td { background: #f9fbff; }
+    tr:nth-child(even) td { background: rgba(15,23,42,0.92); }
+    tr:nth-child(odd) td { background: rgba(17,24,39,0.95); }
 
     .day-sum {
       font-weight: 600;
-      color: #111827;
+      color: #fef9c3;
     }
 
     .rate-row {
@@ -426,7 +448,7 @@
     }
     .rate-row > div { flex: 1 1 160px; }
 
-    .mini-input { max-width: 180px; }
+    .mini-input { max-width: 190px; }
 
     .note-chip {
       display: inline-flex;
@@ -434,31 +456,31 @@
       gap: 6px;
       padding: 4px 10px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px dashed #c4d0ea;
+      background: rgba(15,23,42,0.9);
+      border: 1px dashed rgba(148, 163, 184, 0.7);
       font-size: 11px;
-      color: var(--text-muted);
+      color: #cbd5f5;
       margin-top: 4px;
     }
     .note-chip span.dot {
       width: 6px;
       height: 6px;
       border-radius: 999px;
-      background: var(--accent);
+      background: #22c55e;
     }
 
-    /* Fun fact card */
     .funfact-text {
       font-size: 12px;
-      color: #111827;
+      color: #e5e7eb;
       line-height: 1.4;
-      margin-top: 4px;
+      margin-top: 6px;
     }
-    @media (min-width: 768px) {
+
+    @media (min-width: 900px) {
       .facts-layout {
         display: grid;
         grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-        gap: 14px;
+        gap: 16px;
       }
     }
   </style>
@@ -473,8 +495,8 @@
         </div>
         <h1><span class="flag">🇵🇭</span> Filippinerne – Budget overblik</h1>
         <p>
-          Perioden er sat til <strong>29. november – 30. januar (63 dage)</strong>.
-          Første del er budget i kroner. Nederst kan du føre regnskab dag for dag i pesos.
+          Din profil dækker hele turen <strong>29. november – 30. januar (63 dage)</strong>.
+          Mustis profil dækker hans besøg <strong>15. januar – 30. januar (16 dage)</strong>.
         </p>
       </div>
     </header>
@@ -483,13 +505,17 @@
     <div class="profile-switch animate-enter delay-1">
       <button class="profile-btn profile-btn-active" data-profile-btn="dig" onclick="switchProfile('dig')">
         Dig
-        <span class="badge">Hele perioden</span>
+        <span class="badge">Hele turen</span>
       </button>
       <button class="profile-btn" data-profile-btn="musti" onclick="switchProfile('musti')">
         Musti
-        <span class="badge">7 dage</span>
+        <span class="badge">15.–30. januar</span>
       </button>
     </div>
+    <p class="sub-note">
+      Når du skifter til <strong>Musti</strong>, bruger app’en kun perioden 15.–30. januar (16 dage). 
+      Hans tal starter tomme første gang, så han kan taste sit eget budget.
+    </p>
 
     <div class="layout">
       <!-- INPUTS -->
@@ -497,34 +523,34 @@
         <div class="card-inner">
           <div class="badge-pill">
             <span class="dot"></span>
-            Indtast dine tal
+            Indtast tal for <span id="profileLabelBudget">dig</span>
           </div>
 
           <h2>Indtægter & startpenge</h2>
 
           <div class="field-group">
             <label for="startCash">Startopsparing inden du rejser (kr)</label>
-            <input type="number" id="startCash" value="20000" />
+            <input type="number" id="startCash" />
           </div>
 
           <div class="field-group">
             <label for="decSalary">Løn 23. december (efter skat, kr)</label>
-            <input type="number" id="decSalary" value="19000" />
+            <input type="number" id="decSalary" />
           </div>
 
           <div class="field-group">
             <label for="janSalary">Løn 25. januar (efter skat, kr)</label>
-            <input type="number" id="janSalary" value="19000" />
+            <input type="number" id="janSalary" />
           </div>
 
           <div class="field-group">
             <label for="decHoliday">Feriepenge i december (kr)</label>
-            <input type="number" id="decHoliday" value="2000" />
+            <input type="number" id="decHoliday" />
           </div>
 
           <div class="field-group">
             <label for="janHoliday">Feriepenge i januar (kr)</label>
-            <input type="number" id="janHoliday" value="2000" />
+            <input type="number" id="janHoliday" />
           </div>
 
           <hr />
@@ -533,44 +559,44 @@
 
           <div class="field-group">
             <label for="travelOut">Rejseudgifter ud (fly + hotel + Manila→Davao) (kr)</label>
-            <input type="number" id="travelOut" value="4000" />
+            <input type="number" id="travelOut" />
           </div>
 
           <div class="field-group">
             <label for="travelHome">Returbillet 30. januar (kr)</label>
-            <input type="number" id="travelHome" value="5000" />
+            <input type="number" id="travelHome" />
           </div>
 
           <div class="field-group">
             <label for="decRent">Husleje december (kr)</label>
-            <input type="number" id="decRent" value="5000" />
+            <input type="number" id="decRent" />
           </div>
 
           <div class="field-group">
             <label for="janRent">Husleje januar (kr)</label>
-            <input type="number" id="janRent" value="5000" />
+            <input type="number" id="janRent" />
           </div>
 
           <div class="field-group">
             <label for="febRent">Husleje februar (kr)</label>
-            <input type="number" id="febRent" value="5000" />
-            <small>Du betaler typisk husleje 1. februar for hele februar, selvom du kommer hjem 1. februar.</small>
+            <input type="number" id="febRent" />
+            <small>Fx hvis du betaler husleje 1. februar for hele måneden, selvom du lige er landet.</small>
           </div>
 
           <div class="field-group">
             <label for="xmasGifts">Julegaver til familie (kr)</label>
-            <input type="number" id="xmasGifts" value="3000" />
+            <input type="number" id="xmasGifts" />
           </div>
 
           <div class="field-group">
-            <label for="friendCost">Ekstra forbrug mens ven er der (15.–30. jan) (kr)</label>
-            <input type="number" id="friendCost" value="8000" />
+            <label for="friendCost">Ekstra forbrug mens ven er der (fx ture, events) (kr)</label>
+            <input type="number" id="friendCost" />
           </div>
 
           <div class="field-group">
-            <label for="targetSavings">Opsparing du vil have tilbage efter rejsen (kr)</label>
-            <input type="number" id="targetSavings" value="2000" />
-            <small>Hvis du vil, at kontoen ikke er helt tom, når du kommer hjem.</small>
+            <label for="targetSavings">Opsparing du vil have tilbage efter perioden (kr)</label>
+            <input type="number" id="targetSavings" />
+            <small>Hvis du vil undgå, at kontoen er helt tom, når perioden er slut.</small>
           </div>
 
           <hr />
@@ -578,16 +604,16 @@
           <h2>Dit forventede dagsforbrug</h2>
           <div class="field-group">
             <label for="expectedDaily">Forventet gennemsnitligt dagsforbrug (kr/dag)</label>
-            <input type="number" id="expectedDaily" value="350" />
-            <small>Mad, transport, hygge osv. Siden tjekker, om det passer med budgettet.</small>
+            <input type="number" id="expectedDaily" />
+            <small>Mad, transport, hygge osv. App’en tjekker, om det passer med budgettet.</small>
           </div>
 
           <div class="btn-row">
             <button class="btn-primary" onclick="calculate()">
-              💡 Beregn budget for <span id="profileLabelBudget">dig</span>
+              💡 Beregn budget for <span id="profileLabelBudgetBtn">dig</span>
             </button>
             <button class="btn-secondary" onclick="resetDefaults()">
-              Nulstil til standard
+              Nulstil profilens standard
             </button>
           </div>
         </div>
@@ -596,19 +622,19 @@
       <!-- RESULTS -->
       <div class="card animate-enter delay-3">
         <div class="card-inner">
-          <div class="badge-pill" style="background: var(--accent-soft); color:#047857;">
-            <span class="dot" style="background:#10b981;"></span>
+          <div class="badge-pill" style="background: rgba(21, 128, 61, 0.5); border-color: rgba(74, 222, 128, 0.7);">
+            <span class="dot" style="background:#4ade80;"></span>
             Resultat – <span id="profileLabelResult">dig</span>
           </div>
 
-          <h2>Oversigt for hele perioden</h2>
+          <h2>Overblik for perioden</h2>
           <div class="result-sub" id="totalInfo">
             Tryk <strong>“Beregn budget”</strong> for at se dit overblik.
           </div>
 
           <hr />
 
-          <h2>Maksimalt forbrug (for at nå din opsparing)</h2>
+          <h2>Maksimalt hyggeforbrug</h2>
           <div class="result-main" id="totalHygge">–</div>
           <div class="result-sub" id="dailyMax">–</div>
           <div class="result-sub" id="monthSplit">–</div>
@@ -626,20 +652,20 @@
     <div class="daily-wrapper facts-layout">
       <div class="card animate-enter delay-2">
         <div class="card-inner">
-          <div class="badge-pill" style="background: rgba(56,189,248,0.16); color:#0369a1;">
+          <div class="badge-pill" style="background: rgba(37, 99, 235, 0.6); border-color: rgba(59,130,246,0.9);">
             <span class="dot" style="background:#0ea5e9;"></span>
             Dagligt forbrug i pesos – <span id="profileLabelDaily">dig</span>
           </div>
-          <h2>Regnskab fra 29. november til 30. januar</h2>
+          <h2>Regnskab for perioden</h2>
           <p>
             Skriv hvad du bruger i <strong>pesos</strong> på mad, shopping, taxa/transport og diverse 
-            for de dage, du vil tracke. Så ser du samlet forbrug og gennemsnit pr. dag – også i kroner.
+            for de dage, du vil tracke. Du får samlet forbrug og gennemsnit pr. dag – også i kroner.
           </p>
 
           <div class="rate-row">
             <div class="field-group mini-input">
               <label for="rateDKK">Valutakurs – hvor mange pesos er 1 DKK?</label>
-              <input type="number" id="rateDKK" value="8" step="0.01" />
+              <input type="number" id="rateDKK" />
               <small>Fx hvis 1 DKK ≈ 8 pesos, så skriv 8.</small>
             </div>
             <div>
@@ -680,13 +706,14 @@
       <!-- FUN FACTS -->
       <div class="card animate-enter delay-3">
         <div class="card-inner">
-          <div class="badge-pill" style="background: rgba(252,211,77,0.25); color:#92400e;">
-            <span class="dot" style="background:#f59e0b;"></span>
+          <div class="badge-pill" style="background: rgba(250, 204, 21, 0.5); border-color: rgba(251, 191, 36, 0.9); color:#fef9c3;">
+            <span class="dot" style="background:#facc15;"></span>
             Fun fact om Filippinerne
           </div>
           <h2>Lidt ekstra hygge-viden</h2>
           <p>
-            Tryk på knappen for en tilfældig fun fact om Filippinerne – perfekt til smalltalk eller når I sidder og chiller.
+            Tryk på knappen for en tilfældig fun fact om Filippinerne – perfekt til smalltalk,
+            når I chiller, rejser eller sidder i taxa.
           </p>
 
           <div class="btn-row">
@@ -704,14 +731,30 @@
   </div>
 
   <script>
-    const DAYS_TOTAL = 63;   // 29. nov – 30. jan
-    const DAYS_DEC = 33;     // 29/11–31/12
-    const DAYS_JAN = 30;     // 1/1–30/1
-    const DAILY_START = new Date(2024, 10, 29); // 29. november (0-indexed måned 10)
+    // Profil-konfiguration: forskellige perioder og datoer
+    const PROFILE_CONFIG = {
+      dig: {
+        key: "dig",
+        label: "dig",
+        daysTotal: 63,
+        daysDec: 33,
+        daysJan: 30,
+        startDate: new Date(2024, 10, 29), // 29. november 2024
+        periodLabel: "29/11–30/1 (63 dage)"
+      },
+      musti: {
+        key: "musti",
+        label: "Musti",
+        daysTotal: 16,
+        daysDec: 0,
+        daysJan: 16,
+        startDate: new Date(2025, 0, 15), // 15. januar 2025
+        periodLabel: "15/1–30/1 (16 dage)"
+      }
+    };
 
-    const PROFILES = ["dig","musti"];
     let activeProfile = "dig";
-    const STORAGE_PREFIX = "phBudget_v2_";
+    const STORAGE_PREFIX = "phBudget_v3_";
 
     const TOP_IDS = [
       "startCash","decSalary","janSalary","decHoliday","janHoliday",
@@ -721,8 +764,8 @@
       "expectedDaily","rateDKK"
     ];
 
-    function storageKey() {
-      return STORAGE_PREFIX + activeProfile;
+    function storageKey(profile = activeProfile) {
+      return STORAGE_PREFIX + profile;
     }
 
     function kr(amount) {
@@ -764,10 +807,7 @@
     function loadState() {
       try {
         const raw = localStorage.getItem(storageKey());
-        if (!raw) {
-          // ingen gemt state – bare lade standardværdier stå
-          return;
-        }
+        if (!raw) return;
         const state = JSON.parse(raw);
 
         if (state.top) {
@@ -804,48 +844,84 @@
       TOP_IDS.forEach(id => {
         const el = document.getElementById(id);
         if (el) {
-          el.addEventListener("input", () => {
-            saveState();
-          });
+          el.oninput = () => saveState();
         }
       });
 
       const tbody = document.getElementById("spendBody");
       const inputs = tbody.querySelectorAll("input[type='number']");
       inputs.forEach(input => {
-        input.addEventListener("input", () => {
-          saveState();
-        });
+        input.oninput = () => saveState();
       });
     }
 
-    // ---------- PROFILSKIFTE ----------
-    function setProfileLabels() {
-      const labelBudget = document.getElementById("profileLabelBudget");
-      const labelResult = document.getElementById("profileLabelResult");
-      const labelDaily = document.getElementById("profileLabelDaily");
+    // ---------- PROFIL DEFAULTS ----------
+    function setProfileDefaults(profile) {
+      const cfg = PROFILE_CONFIG[profile];
+      if (!cfg) return;
 
-      if (activeProfile === "dig") {
-        labelBudget.textContent = "dig";
-        labelResult.textContent = "dig";
-        labelDaily.textContent = "dig";
+      if (profile === "dig") {
+        document.getElementById("startCash").value   = 20000;
+        document.getElementById("decSalary").value   = 19000;
+        document.getElementById("janSalary").value   = 19000;
+        document.getElementById("decHoliday").value  = 2000;
+        document.getElementById("janHoliday").value  = 2000;
+        document.getElementById("travelOut").value   = 4000;
+        document.getElementById("travelHome").value  = 5000;
+        document.getElementById("decRent").value     = 5000;
+        document.getElementById("janRent").value     = 5000;
+        document.getElementById("febRent").value     = 5000;
+        document.getElementById("xmasGifts").value   = 3000;
+        document.getElementById("friendCost").value  = 8000;
+        document.getElementById("targetSavings").value = 2000;
+        document.getElementById("expectedDaily").value = 350;
+        document.getElementById("rateDKK").value = 8;
       } else {
-        labelBudget.textContent = "Musti";
-        labelResult.textContent = "Musti";
-        labelDaily.textContent = "Musti";
+        // Musti: alt starter tomt/0
+        TOP_IDS.forEach(id => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          if (id === "rateDKK") {
+            el.value = 8;
+          } else {
+            el.value = "";
+          }
+        });
       }
+
+      document.getElementById("totalInfo").textContent =
+        "Tryk “Beregn budget” for at se dit overblik for denne profil.";
+      document.getElementById("totalHygge").textContent = "–";
+      document.getElementById("dailyMax").textContent = "–";
+      document.getElementById("monthSplit").textContent = "–";
+      document.getElementById("expectedCheck").textContent = "–";
+      const tag = document.getElementById("expectedTag");
+      tag.textContent = "";
+      tag.className = "";
+
+      document.getElementById("dailySummary").textContent =
+        "Udfyld nogle dage og tryk “Beregn ud fra dagligt forbrug”.";
+    }
+
+    function setProfileLabels() {
+      const cfg = PROFILE_CONFIG[activeProfile];
+      const label = cfg.label;
+      document.getElementById("profileLabelBudget").textContent = label;
+      document.getElementById("profileLabelBudgetBtn").textContent = label;
+      document.getElementById("profileLabelResult").textContent = label;
+      document.getElementById("profileLabelDaily").textContent = label;
     }
 
     function switchProfile(newProfile) {
-      if (!PROFILES.includes(newProfile) || newProfile === activeProfile) return;
+      if (!PROFILE_CONFIG[newProfile] || newProfile === activeProfile) return;
 
-      // gem nuværende
+      // gem nuværende profil
       saveState();
 
-      // skift profil
+      // skift aktiv profil
       activeProfile = newProfile;
 
-      // opdatér knap-styles
+      // opdater knap-styles
       document.querySelectorAll("[data-profile-btn]").forEach(btn => {
         const id = btn.getAttribute("data-profile-btn");
         if (id === activeProfile) {
@@ -855,18 +931,30 @@
         }
       });
 
-      // nul stil på daglig tabel visning, men behold struktur
-      clearDailyTable(false);
-      // load state for ny profil
-      loadState();
+      // byg ny tabel for den nye profil
+      buildDailyTable();
+
+      // hvis der findes gemt state for profilen → load, ellers defaults
+      const hasState = !!localStorage.getItem(storageKey());
+      if (hasState) {
+        loadState();
+      } else {
+        setProfileDefaults(activeProfile);
+      }
+
       setProfileLabels();
+      attachInputListeners();
       calculate();
       calculateDailySpending();
-      attachInputListeners();
     }
 
     // --------- Budget i DKK ---------
     function calculate() {
+      const cfg = PROFILE_CONFIG[activeProfile];
+      const daysTotal = cfg.daysTotal;
+      const daysDec = cfg.daysDec;
+      const daysJan = cfg.daysJan;
+
       const startCash   = Number(document.getElementById("startCash").value)   || 0;
       const decSalary   = Number(document.getElementById("decSalary").value)   || 0;
       const janSalary   = Number(document.getElementById("janSalary").value)   || 0;
@@ -898,9 +986,8 @@
       const hyggePool = totalIn - totalFixed;
 
       const totalInfo =
-        `Du har i alt ${kr(totalIn)} at gøre godt med i perioden (startpenge + løn + feriepenge). ` +
-        `Dine faste udgifter, husleje for 3 måneder, gaver, venneforbrug, returbillet og ønsket opsparing ` +
-        `er tilsammen ${kr(totalFixed)}.`;
+        `Profil: ${cfg.label}. Du har i alt ${kr(totalIn)} at gøre godt med (startpenge + løn + feriepenge). ` +
+        `Dine faste udgifter, husleje, gaver, ekstra forbrug og ønsket opsparing er tilsammen ${kr(totalFixed)}.`;
       document.getElementById("totalInfo").textContent = totalInfo;
 
       const totalHyggeEl = document.getElementById("totalHygge");
@@ -922,20 +1009,25 @@
         return;
       }
 
-      const dailyMax = hyggePool / DAYS_TOTAL;
-      const decBudget = hyggePool * (DAYS_DEC / DAYS_TOTAL);
-      const janBudget = hyggePool * (DAYS_JAN / DAYS_TOTAL);
-
+      const dailyMax = hyggePool / daysTotal;
       totalHyggeEl.textContent =
-        `${kr(hyggePool)} kan bruges på mad, ture og hygge i hele perioden.`;
+        `${kr(hyggePool)} kan bruges på mad, ture og hygge i hele perioden (${cfg.periodLabel}).`;
       dailyMaxEl.textContent =
         `Det svarer til ca. ${kr(dailyMax)} pr. dag i gennemsnit.`;
-      monthSplitEl.textContent =
-        `Fordelt ca.: ${kr(decBudget)} til perioden 29/11–31/12 (33 dage) ` +
-        `og ${kr(janBudget)} til januar (30 dage).`;
+
+
+      if (activeProfile === "dig") {
+        const decBudget = hyggePool * (daysDec / daysTotal);
+        const janBudget = hyggePool * (daysJan / daysTotal);
+        monthSplitEl.textContent =
+          `Fordelt ca.: ${kr(decBudget)} til 29/11–31/12 (33 dage) og ${kr(janBudget)} til 1/1–30/1 (30 dage).`;
+      } else {
+        monthSplitEl.textContent =
+          `Periode: 15/1–30/1 (16 dage). Det er hele Mustis tur, som der regnes ud fra.`;
+      }
 
       if (expectedDaily > 0) {
-        const expectedTotal = expectedDaily * DAYS_TOTAL;
+        const expectedTotal = expectedDaily * daysTotal;
         const diff = hyggePool - expectedTotal;
 
         expectedCheckEl.textContent =
@@ -963,48 +1055,21 @@
     }
 
     function resetDefaults() {
-      document.getElementById("startCash").value   = 20000;
-      document.getElementById("decSalary").value   = 19000;
-      document.getElementById("janSalary").value   = 19000;
-      document.getElementById("decHoliday").value  = 2000;
-      document.getElementById("janHoliday").value  = 2000;
-
-      document.getElementById("travelOut").value   = 4000;
-      document.getElementById("travelHome").value  = 5000;
-      document.getElementById("decRent").value     = 5000;
-      document.getElementById("janRent").value     = 5000;
-      document.getElementById("febRent").value     = 5000;
-      document.getElementById("xmasGifts").value   = 3000;
-      document.getElementById("friendCost").value  = 8000;
-      document.getElementById("targetSavings").value = 2000;
-
-      document.getElementById("expectedDaily").value = 350;
-
-      document.getElementById("totalInfo").textContent =
-        "Tryk “Beregn budget” for at se dit overblik.";
-      document.getElementById("totalHygge").textContent = "–";
-      document.getElementById("dailyMax").textContent = "–";
-      document.getElementById("monthSplit").textContent = "–";
-      document.getElementById("expectedCheck").textContent = "–";
-      const tag = document.getElementById("expectedTag");
-      tag.textContent = "";
-      tag.className = "";
-
-      document.getElementById("rateDKK").value = 8;
-      document.getElementById("dailySummary").textContent =
-        "Udfyld nogle dage og tryk “Beregn ud fra dagligt forbrug”.";
-
-      clearDailyTable(true);
+      // Nulstil kun for aktiv profil
+      setProfileDefaults(activeProfile);
       saveState();
+      calculate();
+      calculateDailySpending();
     }
 
     // --------- Daglig pesos-tracker ---------
     function buildDailyTable() {
+      const cfg = PROFILE_CONFIG[activeProfile];
       const tbody = document.getElementById("spendBody");
       tbody.innerHTML = "";
 
-      for (let i = 0; i < DAYS_TOTAL; i++) {
-        const date = new Date(DAILY_START);
+      for (let i = 0; i < cfg.daysTotal; i++) {
+        const date = new Date(cfg.startDate);
         date.setDate(date.getDate() + i);
 
         const label = date.toLocaleDateString("da-DK", {
@@ -1025,7 +1090,7 @@
           input.type = "number";
           input.min = "0";
           input.step = "1";
-          input.style.width = "70px";
+          input.style.width = "72px";
           input.setAttribute("data-day", i.toString());
           input.setAttribute("data-cat", cat);
           td.appendChild(input);
@@ -1041,23 +1106,12 @@
       }
     }
 
-    function clearDailyTable(clearInputs = true) {
-      const tbody = document.getElementById("spendBody");
-      const rows = tbody.querySelectorAll("tr");
-      rows.forEach(row => {
-        const sumCell = row.querySelector(".day-sum");
-        if (sumCell) sumCell.textContent = "–";
-        if (clearInputs) {
-          const inputs = row.querySelectorAll("input[type='number']");
-          inputs.forEach(input => (input.value = ""));
-        }
-      });
-    }
-
     function calculateDailySpending() {
+      const cfg = PROFILE_CONFIG[activeProfile];
       const tbody = document.getElementById("spendBody");
       const rows = tbody.querySelectorAll("tr");
       let totalPesos = 0;
+      let daysWithSpend = 0;
 
       rows.forEach(row => {
         const inputs = row.querySelectorAll("input[type='number']");
@@ -1066,6 +1120,9 @@
           const v = Number(input.value) || 0;
           daySum += v;
         });
+        if (daySum > 0) {
+          daysWithSpend++;
+        }
         totalPesos += daySum;
 
         const sumCell = row.querySelector(".day-sum");
@@ -1085,19 +1142,21 @@
           "Udfyld nogle beløb i tabellen og tryk på knappen for at se dit samlede forbrug.";
       } else {
         summary =
-          "Samlet registreret forbrug: " +
-          totalPesos.toLocaleString("da-DK") +
-          " ₱";
+          "Samlet registreret forbrug for " + PROFILE_CONFIG[activeProfile].label +
+          ": " + totalPesos.toLocaleString("da-DK") + " ₱";
 
         if (rate > 0) {
           const totalDKK = totalPesos / rate;
-          const avgPesos = totalPesos / DAYS_TOTAL;
+          const divisor = daysWithSpend > 0 ? daysWithSpend : cfg.daysTotal;
+          const avgPesos = totalPesos / divisor;
           const avgDKK = avgPesos / rate;
 
           summary +=
             " (ca. " +
             kr(totalDKK) +
-            "). Gennemsnit pr. dag: " +
+            "). Gennemsnit pr. dag (" +
+            divisor +
+            " dage): " +
             avgPesos.toLocaleString("da-DK", {
               maximumFractionDigits: 0,
             }) +
@@ -1124,50 +1183,50 @@
       "De officielle sprog er filipino (baseret på tagalog) og engelsk.",
       "Manila er hovedstaden, men Quezon City er den mest befolkede by.",
       "Filippinerne er kendt som verdens SMS-hovedstad – folk sender rigtig mange beskeder.",
-      "Jeepneys er et ikonisk transportmiddel lavet fra gamle amerikanske militærjeeps.",
+      "Jeepneys er ikoniske farverige minibusser lavet fra gamle militærjeeps.",
       "Filippinerne ligger i en tyfon-zone og oplever mange tropiske storme hvert år.",
       "Landet ligger på Stillehavets Ildring og har flere aktive vulkaner.",
       "Mayon-vulkanen er kendt for sin næsten perfekte kegleform.",
       "Filippinerne er et af verdens mest biodiversitetsrige lande.",
-      "Tarsieren, et af verdens mindste primater, findes på Bohol.",
+      "Tarsieren, et af verdens mindste primater, findes på øen Bohol.",
       "Whale sharks (butanding) kan ses bl.a. ved Donsol og Oslob.",
-      "Filippinerne er verdens største eksportør af kokosnødder.",
+      "Filippinerne er en stor eksportør af kokosnødder og kokosprodukter.",
       "Mange filippinere arbejder i udlandet som OFW (Overseas Filipino Workers).",
       "Filippinere er kendt for stærke familieværdier og store familiesammenkomster.",
-      "Julefejringen starter ofte allerede i september og er en af verdens længste.",
+      "Julefejringen starter ofte allerede i september – en af verdens længste juleperioder.",
       "Lechon (helstegt gris) er en klassisk festret i Filippinerne.",
       "Adobo og sinigang er to af de mest kendte filippinske retter.",
       "Halo-halo er en populær dessert med is, frugt, bønner og knust is.",
       "Filippinerne var en spansk koloni i mere end 300 år.",
-      "Derfor har mange filippinere spanske efternavne som Santos, Reyes og Garcia.",
+      "Mange filippinere har spanske efternavne som Santos, Reyes og Garcia.",
       "Katolicisme er den dominerende religion i Filippinerne.",
       "Filippinske fiestaer fejres næsten overalt, ofte til ære for en lokal skytshelgen.",
       "Landet fik sit navn efter kong Filip II af Spanien.",
       "Filippinerne var også under amerikansk styre i starten af 1900-tallet.",
       "Basketball er en af de mest populære sportsgrene i Filippinerne.",
-      "Karaoke (videoke) er mega stort, og mange har anlæg derhjemme.",
+      "Karaoke (videoke) er kæmpe stort – der findes anlæg i mange hjem og barer.",
       "Filippinerne er kendt for dygtige sangere, både lokalt og internationalt.",
-      "Boracay er kendt for sine smukke hvide sandstrande.",
+      "Boracay er berømt for sine smukke hvide sandstrande.",
       "Palawan bliver ofte kaldt en af verdens smukkeste øer.",
-      "Filippinerne producerer meget mango – især fra Guimaras.",
-      "Jollibee er en kæmpe fastfoodkæde og et nationalt ikon.",
-      "Filippinere er kendt for at være gæstfrie og smilende.",
+      "Filippinerne producerer meget mango – især fra øen Guimaras.",
+      "Jollibee er en kæmpe filippinsk fastfoodkæde og et nationalt ikon.",
+      "Filippinere er kendt for gæstfrihed og at få gæster til at føle sig hjemme.",
       "Mange filippinere er tosprogede eller flersprogede fra barnsben.",
       "Respekt for ældre vises bl.a. ved at sige “po” og “opo”.",
-      "Traditionen “mano po” er at tage en ældres hånd til panden som respekt.",
-      "Filippinerne har en ung befolkning – gennemsnitsalderen er ret lav.",
-      "Landet har en voksende tech- og BPO-industri (callcentre, support osv.).",
-      "Chicarrón, pandesal og lumpia er populære snacks.",
-      "Mange filippinske byer har navne med spansk oprindelse.",
+      "Traditionen “mano po” er at tage en ældres hånd til panden som tegn på respekt.",
+      "Filippinerne har en meget ung befolkning med lav gennemsnitsalder.",
+      "Landet har en stor BPO-industri (callcentre, kundeservice osv.).",
+      "Chicharrón, pandesal og lumpia er populære snacks.",
+      "Mange filippinske byer har spansk-inspirerede navne.",
       "Filippinerne har flere UNESCO World Heritage Sites, fx Banaue-risterrasserne.",
-      "Filippinsk tid (ofte kaldet “Filipino time”) er berømt for at være ret afslappet.",
+      "Filippinsk tid, ofte kaldet “Filipino time”, er kendt for at være ret afslappet.",
       "Der er ofte karaoke i malls, på gaden og til private fester.",
       "Tricycles og pedicabs er almindelige lokale transportmidler.",
-      "Filippinerne har en stærk OFW-kultur, hvor penge sendes hjem til familien.",
-      "Landet er en af verdens største producenter af nikkel og andre mineraler.",
+      "Filippinerne er en af verdens største producenter af nikkel og andre mineraler.",
       "Mange filippinere elsker både K-pop, amerikansk pop og lokal OPM-musik.",
-      "Filippinske bryllupper og fester kan vare mange timer – med masser af mad.",
-      "Filippinsk høflighed og varme gør, at mange rejsende føler sig hurtigt hjemme."
+      "Filippinske bryllupper og fester kan vare mange timer med masser af mad.",
+      "Filippinsk høflighed og varme gør, at mange rejsende hurtigt føler sig velkomne.",
+      "Filippinerne har en stærk kultur for at hjælpe hinanden i lokalsamfundet."
     ];
 
     function showRandomFact() {
@@ -1178,9 +1237,18 @@
 
     // ---------- INIT ----------
     document.addEventListener("DOMContentLoaded", () => {
+      // start på din profil
+      activeProfile = "dig";
       buildDailyTable();
+
+      // hvis der ikke er gemt state for dig → sæt defaults
+      if (!localStorage.getItem(storageKey("dig"))) {
+        setProfileDefaults("dig");
+      } else {
+        loadState();
+      }
+
       setProfileLabels();
-      loadState();
       attachInputListeners();
       calculate();
       calculateDailySpending();
